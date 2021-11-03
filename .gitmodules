@@ -1,0 +1,3 @@
+[submodule "src/qeeqbox-chameleon"]
+	path = src/qeeqbox-chameleon
+	url = https://github.com/extra2000/qeeqbox-chameleon.git
