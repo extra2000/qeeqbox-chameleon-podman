@@ -1,0 +1,7 @@
+(block qeeqbox_chameleon_grafana
+    (blockinherit container)
+    (blockinherit restricted_net_container)
+    (allow process jboss_management_port_t ( tcp_socket ( name_connect )))
+    (allow process ntop_port_t ( tcp_socket ( name_bind )))
+    (allow process user_home_t ( file ( open read )))
+)

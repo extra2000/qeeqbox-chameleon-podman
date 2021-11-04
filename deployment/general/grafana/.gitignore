@@ -1,0 +1,5 @@
+configmaps/*
+!configmaps/*.example
+
+configs/*
+!configs/*.example

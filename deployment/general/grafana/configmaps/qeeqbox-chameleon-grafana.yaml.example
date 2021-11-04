@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qeeqbox-chameleon-grafana-configmap
+data:
+  gf_security_admin_user: gfadmin
+  gf_security_admin_password: abcde12345
+  gf_database_type: postgres
+  gf_database_host: qeeqbox-chameleon-postgres-pod:9999
+  gf_database_name: grafanadb
+  gf_database_user: grafana
+  gf_database_password: abcde12345
+  gf_remote_cache_type: redis
+  gf_remote_cache_connstr: addr=qeeqbox-chameleon-redis-pod:6379,pool_size=100,db=0,ssl=false
+  gf_date_formats_default_timezone: browser
+  gf_panels_disable_sanitize_html: false

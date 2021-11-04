@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: qeeqbox-chameleon-grafana-pod
+  name: qeeqbox-chameleon-grafana-pod
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: localhost/default.json
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: false
+  containers:
+  - name: srv01
+    image: docker.io/grafana/grafana:7.5.7
+    securityContext:
+      runAsGroup: 0
+      runAsUser: 472
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: qeeqbox_chameleon_grafana.process
+    resources:
+      requests:
+        memory: 300Mi
+        cpu: 1000m
+      limits:
+        memory: 300Mi
+        cpu: 1000m
+    ports:
+    - containerPort: 3000
+      hostPort: 3000
+      hostIP: 0.0.0.0
+      protocol: tcp
+    env:
+    - name: GF_SECURITY_ADMIN_USER
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_security_admin_user
+    - name: GF_SECURITY_ADMIN_PASSWORD
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_security_admin_password
+    - name: GF_DATABASE_TYPE
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_database_type
+    - name: GF_DATABASE_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_database_host
+    - name: GF_DATABASE_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_database_name
+    - name: GF_DATABASE_USER
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_database_user
+    - name: GF_DATABASE_PASSWORD
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_database_password
+    - name: GF_REMOTE_CACHE_TYPE
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_remote_cache_type
+    - name: GF_REMOTE_CACHE_CONNSTR
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_remote_cache_connstr
+    - name: GF_DATE_FORMATS_DEFAULT_TIMEZONE
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_date_formats_default_timezone
+    - name: GF_PANELS_DISABLE_SANITIZE_HTML
+      valueFrom:
+        configMapKeyRef:
+          name: qeeqbox-chameleon-grafana-configmap
+          key: gf_panels_disable_sanitize_html
+    volumeMounts:
+    - mountPath: /etc/grafana/provisioning/datasources/postgres.yml
+      name: datasource-postgres
+      readOnly: true
+    - mountPath: /etc/grafana/provisioning/dashboards/dashboards.yml
+      name: provisioning-dashboards
+      readOnly: true
+    - mountPath: /var/lib/grafana/dashboards/chameleon.json
+      name: dashboard-chameleon
+      readOnly: true
+  volumes:
+  - name: datasource-postgres
+    hostPath:
+      path: ./configs/postgres.yml
+  - name: provisioning-dashboards
+    hostPath:
+      path: ./configs/dashboards.yml
+  - name: dashboard-chameleon
+    hostPath:
+      path: ./configs/chameleon.json
+  
