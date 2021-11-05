@@ -258,6 +258,12 @@ Execute the following command:
 
     podman play kube --network qeeqboxnet --configmap configmaps/qeeqbox-chameleon-honeypots.yaml --seccomp-profile-root ./seccomp qeeqbox-chameleon-honeypots-pod.yaml
 
+To view Honeypots logs, execute the following command:
+
+.. code-block:: bash
+
+    podman logs --follow qeeqbox-chameleon-honeypots-pod-srv01
+
 Testing
 -------
 
