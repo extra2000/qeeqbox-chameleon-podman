@@ -150,12 +150,6 @@ From the project root directory, ``cd`` into ``deployment/general/redis``:
 
     cd deployment/general/redis
 
-Create config files:
-
-.. code-block:: bash
-
-    cp -v configmaps/qeeqbox-chameleon-redis.yaml{.example,}
-
 Load SELinux security policy:
 
 .. code-block:: bash
