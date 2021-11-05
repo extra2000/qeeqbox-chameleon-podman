@@ -216,6 +216,8 @@ Deploy grafana:
 
     podman play kube --network qeeqboxnet --configmap configmaps/qeeqbox-chameleon-grafana.yaml --seccomp-profile-root ./seccomp qeeqbox-chameleon-grafana-pod.yaml
 
+Test Grafana deployment. Open your web-browser and go to http://localhost:3000.
+
 Deploy Honeypots
 ----------------
 
