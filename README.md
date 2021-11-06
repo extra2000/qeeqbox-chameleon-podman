@@ -24,10 +24,10 @@ Allow `./docs` to be mounted into Podman container:
 chcon -R -v -t container_file_t ./docs
 ```
 
-Create `./output` to store rendered HTML output and allow the directory to be mounted into Podman container:
+Create `./output` and `docs/build` directories to store rendered HTML output and allow the directory to be mounted into Podman container:
 ```
-mkdir -pv output
-chcon -R -v -t container_file_t ./output
+mkdir -pv output docs/build
+chcon -R -v -t container_file_t ./output docs/build
 ```
 
 Build docs:
