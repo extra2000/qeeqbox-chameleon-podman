@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    app: docs-qeeqbox-honeypots-pod
-  name: docs-qeeqbox-honeypots-pod
+    app: docs-qeeqbox-chameleon-pod
+  name: docs-qeeqbox-chameleon-pod
 spec:
   restartPolicy: OnFailure
   hostNetwork: false
@@ -20,7 +20,7 @@ spec:
         - CAP_NET_RAW
         - CAP_AUDIT_WRITE
       seLinuxOptions:
-        type: docs_qeeqbox_honeypots_pod.process
+        type: docs_qeeqbox_chameleon_pod.process
     resources:
       requests:
         memory: 100Mi
