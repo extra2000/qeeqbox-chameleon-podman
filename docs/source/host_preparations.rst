@@ -19,7 +19,7 @@ Execute the following command to install Podman:
 
 .. code-block:: bash
 
-    sudo dnf install podman
+    sudo dnf install podman dnsmasq
 
 SELinux Utilities
 -----------------
