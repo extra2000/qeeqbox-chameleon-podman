@@ -21,6 +21,31 @@ Execute the following command to install Podman:
 
     sudo dnf install podman dnsmasq
 
+Installing Podman plugin ``dnsname``
+------------------------------------
+
+.. note::
+
+    Skip this Section if ``/usr/libexec/cni/dnsname`` file exists.
+
+Podman plugin ``dnsname`` may not be available if ``containernetworking-plugins`` version is lower than `1.0.1`.
+
+Clone ``dnsname`` repository and build:
+
+.. code-block:: bash
+
+    git clone https://github.com/containers/dnsname.git
+    chcon -R -v -t container_file_t ./dnsname
+    podman run -it --rm --workdir=/opt/dnsname -v ./dnsname:/opt/dnsname:rw docker.io/golang:1.17.3 make
+
+Copy the binary files into Podman plugins directory and fix permissions:
+
+.. code-block:: bash
+
+    sudo cp -v ./dnsname/bin/dnsname /usr/libexec/cni/dnsname
+    sudo chcon -v -u system_u /usr/libexec/cni/dnsname
+    sudo chmod og+rx /usr/libexec/cni/dnsname
+
 SELinux Utilities
 -----------------
 
