@@ -38,6 +38,7 @@ Create ``/etc/containers/containers.conf`` if not exists:
 .. code-block:: bash
 
     sudo cp -v /usr/share/containers/containers.conf /etc/containers/containers.conf
+    sudo chmod og+r /etc/containers/containers.conf
 
 Then, in ``/etc/containers/containers.conf``, make sure ``ulimits`` is set to at least ``65535`` and make ``memlock`` unlimited:
 
