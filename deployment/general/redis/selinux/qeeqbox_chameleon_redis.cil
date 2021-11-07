@@ -2,7 +2,7 @@
     (blockinherit container)
     (allow process process ( capability ( chown dac_override fowner fsetid kill net_bind_service setfcap setgid setpcap setuid sys_chroot )))
     (allow process node_t ( tcp_socket ( node_bind )))
-    (allow process redis_port_t ( tcp_socket ( node_bind )))
+    (allow process redis_port_t ( tcp_socket ( node_bind name_bind )))
     (allow process self ( tcp_socket ( listen )))
     (allow process container_file_t ( dir ( add_name create getattr ioctl lock open read remove_name rmdir search setattr write )))
     (allow process container_file_t ( file ( append create getattr ioctl lock map open read rename setattr unlink write )))
