@@ -156,6 +156,12 @@ From the project root directory, ``cd`` into ``deployment/development/redis``:
 
     cd deployment/development/redis
 
+Create pod file:
+
+.. code-block:: bash
+
+    cp -v qeeqbox-chameleon-redis-pod.yaml{.example,}
+
 Load SELinux security policy:
 
 .. code-block:: bash
