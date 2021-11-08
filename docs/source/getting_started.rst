@@ -73,11 +73,11 @@ Create ``~/.config/cni/net.d/qeeqboxnet.conflist`` file:
 Deploy Postgres
 ---------------
 
-From the project root directory, ``cd`` into ``deployment/general/postgres``:
+From the project root directory, ``cd`` into ``deployment/development/postgres``:
 
 .. code-block:: bash
 
-    cd deployment/general/postgres
+    cd deployment/development/postgres
 
 Create config files:
 
@@ -144,11 +144,11 @@ Create database and credentials for Grafana:
 Deploy Redis
 ------------
 
-From the project root directory, ``cd`` into ``deployment/general/redis``:
+From the project root directory, ``cd`` into ``deployment/development/redis``:
 
 .. code-block:: bash
 
-    cd deployment/general/redis
+    cd deployment/development/redis
 
 Load SELinux security policy:
 
@@ -177,11 +177,11 @@ Test redis. Make sure the following command returns ``PONG``:
 Deploy Grafana
 --------------
 
-From the project root directory, ``cd`` into ``deployment/general/grafana``:
+From the project root directory, ``cd`` into ``deployment/development/grafana``:
 
 .. code-block:: bash
 
-    cd deployment/general/grafana
+    cd deployment/development/grafana
 
 Create config files:
 
@@ -221,11 +221,11 @@ Test Grafana deployment. Open your web-browser and go to http://localhost:3000.
 Deploy Honeypots
 ----------------
 
-From the project root directory, ``cd`` into ``deployment/general/honeypots``:
+From the project root directory, ``cd`` into ``deployment/development/honeypots``:
 
 .. code-block:: bash
 
-    cd deployment/general/honeypots
+    cd deployment/development/honeypots
 
 Create config files:
 
