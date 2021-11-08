@@ -6,3 +6,5 @@ configs/*
 
 service/*
 !service/*.example
+
+qeeqbox-chameleon-honeypots-pod.yaml

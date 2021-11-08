@@ -252,6 +252,12 @@ Create config files:
     cp -v configmaps/qeeqbox-chameleon-honeypots.yaml{.example,}
     cp -v configs/config.json{.example,}
 
+Create pod file:
+
+.. code-block:: bash
+
+    cp -v qeeqbox-chameleon-honeypots-pod.yaml{.example,}
+
 For SELinux platform, label the following files to allow to be mounted into container:
 
 .. code-block:: bash
