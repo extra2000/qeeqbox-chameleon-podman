@@ -1,7 +1,7 @@
-Getting Started
-===============
+Development Deployment
+======================
 
-Example how to use Qeeqbox Chameleon.
+Example how to deploy Qeeqbox Chameleon for development environment.
 
 Build Qeeqbox Honeypots image
 -----------------------------

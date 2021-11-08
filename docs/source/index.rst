@@ -10,4 +10,4 @@ Welcome to Qeeqbox Chameleon Podman's documentation!
   legal_notices
   introduction
   host_preparations
-  getting_started
+  deployment_development
