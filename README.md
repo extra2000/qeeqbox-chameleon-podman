@@ -53,7 +53,12 @@ Deploy docs:
 podman run --rm --network no-internet -p 18080:80 -v ./output/html:/usr/local/apache2/htdocs:ro --security-opt label=type:docs_qeeqbox_chameleon_pod.process docker.io/library/httpd:2.4
 ```
 
-Deploy docs using pod:
+To deploy docs using pod, create pod file:
+```
+cp -v docs-qeeqbox-chameleon-pod.yaml{.example,}
+```
+
+Then, deploy docs using pod:
 ```
 podman play kube --network no-internet docs-qeeqbox-chameleon-pod.yaml
 ```
