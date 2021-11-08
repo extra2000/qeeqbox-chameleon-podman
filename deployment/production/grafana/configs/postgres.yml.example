@@ -1,0 +1,16 @@
+apiVersion: 1
+
+datasources:
+- name: chameleon
+  type: postgres
+  url: 127.0.0.1:9999
+  access: proxy
+  user: qeeqboxuser
+  password: abcde12345
+  database: chameleon
+  basicAuth: false
+  isDefault: true
+  jsonData:
+     sslmode: disable
+  version: 1
+  editable: true

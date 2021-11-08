@@ -1,0 +1,3 @@
+configmaps/*
+!configmaps/*.example
+qeeqbox-chameleon-redis-pod.yaml

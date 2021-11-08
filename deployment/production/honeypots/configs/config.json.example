@@ -1,0 +1,117 @@
+{
+    "logs": "db,file,terminal",
+    "logs_location": "/var/log/honeypots",
+    "syslog_address": "udp://syslog:514",
+    "syslog_facility": 3,
+    "postgres": "//qeeqboxuser:abcde12345@127.0.0.1:9999/chameleon",
+    "filter": "not port 9999 and not port 514",
+    "interface": "enp7s0",
+    "honeypots": {
+        "ftp": {
+            "ip": "x.x.x.x",
+            "port": 21,
+            "username": "test",
+            "password": "test"
+        },
+        "ssh": {
+            "ip": "x.x.x.x",
+            "port": 22,
+            "username": "test",
+            "password": "test"
+        },
+        "telnet": {
+            "ip": "x.x.x.x",
+            "port": 23,
+            "username": "test",
+            "password": "test"
+        },
+        "smtp": {
+            "ip": "x.x.x.x",
+            "port": 25,
+            "username": "test",
+            "password": "test"
+        },
+        "http": {
+            "ip": "x.x.x.x",
+            "port": 80,
+            "username": "test",
+            "password": "test"
+        },
+        "pop3": {
+            "ip": "x.x.x.x",
+            "port": 110,
+            "username": "test",
+            "password": "test"
+        },
+        "imap": {
+            "ip": "x.x.x.x",
+            "port": 143,
+            "username": "test",
+            "password": "test"
+        },
+        "https": {
+            "ip": "x.x.x.x",
+            "port": 443,
+            "username": "test",
+            "password": "test"
+        },
+        "postgres": {
+            "ip": "x.x.x.x",
+            "port": 5432,
+            "username": "test",
+            "password": "test"
+        },
+        "smb": {
+            "ip": "x.x.x.x",
+            "port": 445,
+            "username": "test",
+            "password": "test"
+        },
+        "socks5": {
+            "ip": "x.x.x.x",
+            "port": 1080,
+            "username": "test",
+            "password": "test"
+        },
+        "mysql": {
+            "ip": "x.x.x.x",
+            "port": 3306,
+            "username": "test",
+            "password": "test"
+        },
+        "vnc": {
+            "ip": "x.x.x.x",
+            "port": 5900,
+            "username": "test",
+            "password": "test"
+        },
+        "redis": {
+            "ip": "x.x.x.x",
+            "port": 6379,
+            "username": "test",
+            "password": "test"
+        },
+        "httpproxy": {
+            "port": 8080,
+            "ip": "0.0.0.0"
+        },
+        "elastic": {
+            "ip": "x.x.x.x",
+            "port": 9200,
+            "username": "elastic",
+            "password": "test"
+        },
+        "mssql": {
+            "ip": "x.x.x.x",
+            "port": 1433,
+            "username": "test",
+            "password": "test"
+        },
+        "ldap": {
+            "ip": "x.x.x.x",
+            "port": 389,
+            "username": "test",
+            "password": "test"
+        }
+    }
+}
