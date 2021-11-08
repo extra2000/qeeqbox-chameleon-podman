@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.0.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v2.0.0...v3.0.0) (2021-11-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **postgres:** Deployment for Postgres development environment have changed. Refer to documentations on how to create configs and deploy.
+
+### Features
+
+* **deployment:** add example for Production Deployment ([4b9169a](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/4b9169a533616d114500fe02344ad423d2d98e05))
+
+
+### Documentations
+
+* **host-preparations:** add instruction to change runtime from `runc` to `crun` ([547579a](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/547579a821e2be53b2ac9d3691ba97553482f3bd))
+
+
+### Fixes
+
+* **postgres:** add configs for development deployment to fix SELinux AVC constraint issue ([3e8ebcb](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/3e8ebcbacd1ec9757025f5a02087d83836632ff6))
+
 ## [2.0.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v1.0.2...v2.0.0) (2021-11-08)
 
 
