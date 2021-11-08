@@ -1,5 +1,31 @@
 # Changelog
 
+## [2.0.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v1.0.2...v2.0.0) (2021-11-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deployment:** Pod file `qeeqbox-chameleon-honeypots-pod.yaml` have been renamed to `qeeqbox-chameleon-honeypots-pod.yaml.example`. Refer to documentations on how to create the pod file.
+* **deployment:** Pod file `qeeqbox-chameleon-grafana-pod.yaml` have been renamed to `qeeqbox-chameleon-grafana-pod.yaml.example`. Refer to documentations on how to create the pod file.
+* **deployment:** Pod file `qeeqbox-chameleon-redis-pod.yaml` have been renamed to `qeeqbox-chameleon-redis-pod.yaml.example`. Refer to documentations on how to create the pod file.
+* **deployment:** Pod file `qeeqbox-chameleon-postgres-pod.yaml` have been renamed to `qeeqbox-chameleon-postgres-pod.yaml.example`. Refer to documentations on how to create the pod file.
+* **docs:** Podman pod file `docs-qeeqbox-chameleon-pod.yaml` have been renamed to `docs-qeeqbox-chameleon-pod.yaml.example`. Refer to `README.md` how to create pod file.
+* **deployment:** Directory `deployment/general/` have been renamed to `deployment/development/`
+
+### Documentations
+
+* rename `Getting Started` to `Development Deployment` ([6ccd2c2](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/6ccd2c264f6382c9421917196b961bb22d815d4c))
+
+
+### Code Refactoring
+
+* **deployment:** rename `deployment/general/` to `deployment/development/` ([2a91798](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/2a9179815bfe52cd9ec77d2e9e7ef15d0774f97f))
+* **deployment:** rename `qeeqbox-chameleon-grafana-pod.yaml` to `qeeqbox-chameleon-grafana-pod.yaml.example` ([1b48ccf](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/1b48ccf4f04f28a991c903fa538a1c2b7a56e30f))
+* **deployment:** rename `qeeqbox-chameleon-honeypots-pod.yaml` to `qeeqbox-chameleon-honeypots-pod.yaml.example` ([db3260d](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/db3260dce9c99c133072537d8d08a89182c378ba))
+* **deployment:** rename `qeeqbox-chameleon-postgres-pod.yaml` to `qeeqbox-chameleon-postgres-pod.yaml.example` ([6f7a75e](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/6f7a75e3b56b5b1111e4952f582482493402481d))
+* **deployment:** rename `qeeqbox-chameleon-redis-pod.yaml` to `qeeqbox-chameleon-redis-pod.yaml.example` ([e89e1e5](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/e89e1e5303c2921c529cb9fe07725c161a178847))
+* **docs:** rename `docs-qeeqbox-chameleon-pod.yaml` to `docs-qeeqbox-chameleon-pod.yaml.example` ([6a24ff5](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/6a24ff51d0827f202ba5f6e865b2f20863427f94))
+
 ### [1.0.2](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v1.0.1...v1.0.2) (2021-11-07)
 
 
