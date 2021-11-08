@@ -3,3 +3,5 @@ configmaps/*
 
 configs/*
 !configs/*.example
+
+qeeqbox-chameleon-grafana-pod.yaml

@@ -204,6 +204,12 @@ Create config files:
     cp -v configs/dashboards.yml{.example,}
     cp -v configs/postgres.yml{.example,}
 
+Create pod file:
+
+.. code-block:: bash
+
+    cp -v qeeqbox-chameleon-grafana-pod.yaml{.example,}
+
 For SELinux platform, label the following files to allow to be mounted into container:
 
 .. code-block:: bash
