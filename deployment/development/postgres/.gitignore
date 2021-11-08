@@ -1,2 +1,3 @@
 configmaps/*
 !configmaps/*.example
+qeeqbox-chameleon-postgres-pod.yaml
