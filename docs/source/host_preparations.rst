@@ -19,7 +19,7 @@ Execute the following command to install Podman:
 
 .. code-block:: bash
 
-    sudo dnf install podman dnsmasq
+    sudo dnf install podman dnsmasq crun
 
 Installing Podman plugin ``dnsname``
 ------------------------------------
@@ -65,7 +65,7 @@ Create ``/etc/containers/containers.conf`` if not exists:
     sudo cp -v /usr/share/containers/containers.conf /etc/containers/containers.conf
     sudo chmod og+r /etc/containers/containers.conf
 
-Then, in ``/etc/containers/containers.conf``, make sure ``ulimits`` is set to at least ``65535`` and make ``memlock`` unlimited:
+Then, in ``/etc/containers/containers.conf``, make sure ``ulimits`` is set to at least ``65535`` and make ``memlock`` unlimited. Also make sure the ``runtime`` is set to ``crun`` instead of ``runc``:
 
 .. code-block:: text
 
@@ -75,6 +75,14 @@ Then, in ``/etc/containers/containers.conf``, make sure ``ulimits`` is set to at
       "nofile=65535:65535",
       "memlock=-1:-1"
     ]
+
+    [engine]
+
+    runtime = "crun"
+
+.. note::
+
+    Using ``runtime = "crun"`` is recommended compared to ``runtime = "runc"`` because Podman pod cannot bind port when using ``hostNetwork: true`` in pod YAML file.
 
 Since the ``ulimit`` config above is applied globally, it will cause a permission error when Podman is executed as rootless. To prevent this error, create an empty ``default_ulimits`` in ``~/.config/containers/containers.conf`` file:
 
