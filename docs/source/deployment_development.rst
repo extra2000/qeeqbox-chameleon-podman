@@ -84,12 +84,20 @@ Create config files:
 .. code-block:: bash
 
     cp -v configmaps/qeeqbox-chameleon-postgres.yaml{.example,}
+    cp -v configs/postgres.conf{.example,}
+    chmod o+r configs/postgres.conf
 
 Create pod file:
 
 .. code-block:: bash
 
     cp -v qeeqbox-chameleon-postgres-pod.yaml{.example,}
+
+For SELinux platform, label the following files to allow to be mounted into container:
+
+.. code-block:: bash
+
+    chcon -R -v -t container_file_t ./configs
 
 Load SELinux security policy:
 

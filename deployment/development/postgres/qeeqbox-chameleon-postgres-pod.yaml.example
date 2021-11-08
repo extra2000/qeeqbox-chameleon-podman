@@ -12,7 +12,7 @@ spec:
   containers:
   - name: srv01
     image: docker.io/library/postgres:9.6
-    args: ["-p", "9999"]
+    args: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
     securityContext:
       runAsGroup: 999
       runAsUser: 999
@@ -45,9 +45,15 @@ spec:
           name: qeeqbox-chameleon-postgres-configmap
           key: postgres_password
     volumeMounts:
+    - mountPath: /etc/postgresql/postgresql.conf
+      name: postgresql-config
+      readOnly: true
     - mountPath: /var/lib/postgresql/data
       name: pgdata
   volumes:
+  - name: postgresql-config
+    hostPath:
+      path: ./configs/postgres.conf
   - name: pgdata
     persistentVolumeClaim:
       claimName: qeeqbox-chameleon-postgres-data
