@@ -13,8 +13,8 @@ From the project root directory, ``cd`` into ``src/qeeqbox-chameleon`` and then 
     cd src/qeeqbox-chameleon
     podman build -t qeeqbox/honeypots -f honeypots-Dockerfile --build-arg PORTS="21 22 23 25 80 110 143 389 443 445 1080 3306 5900 6379 8080 9200 1433 5432" .
 
-Create Podman Network (the ``qeeqboxnet``)
-------------------------------------------
+Create Podman Network (the ``qeeqboxnet``) with no Internet access
+------------------------------------------------------------------
 
 Create ``~/.config/cni/net.d/qeeqboxnet.conflist`` file:
 
@@ -28,7 +28,7 @@ Create ``~/.config/cni/net.d/qeeqboxnet.conflist`` file:
           "type": "bridge",
           "bridge": "cni-podman1",
           "isGateway": true,
-          "ipMasq": true,
+          "ipMasq": false,
           "hairpinMode": true,
           "ipam": {
             "type": "host-local",
@@ -69,6 +69,14 @@ Create ``~/.config/cni/net.d/qeeqboxnet.conflist`` file:
 .. warning::
 
     Rename ``cni-podman1`` to ``cni-podman2`` and etc if the name is already used by other Podman deployments. Also make sure to change IP address for ``subnet`` and ``gateway`` if they are already exists in your existing deployments.
+
+Notice that the ``"ipMasq": false,`` will ensure the ``qeeqboxnet`` will not have any Internet access.
+
+Make sure the following command failed:
+
+.. code-block:: bash
+
+    podman run -it --rm --network=qeeqboxnet docker.io/curlimages/curl:latest https://google.com
 
 Deploy Postgres
 ---------------
