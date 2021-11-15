@@ -1,0 +1,10 @@
+configmaps/*
+!configmaps/*.example
+
+configs/*
+!configs/*.example
+
+secrets/*
+!secrets/.gitkeep
+
+qeeqbox-chameleon-filebeat-pod.yaml
