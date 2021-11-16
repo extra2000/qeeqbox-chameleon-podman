@@ -118,12 +118,6 @@ Enable Unified Cgroup:
     sudo grub2-mkconfig -o /etc/grub2.cfg
     sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
-Install the following package to provide ``/sys/fs/cgroup/user.slice/``:
-
-.. code-block:: bash
-
-    sudo dnf install systemd-pam
-
 Create ``/etc/systemd/system/user@.service.d/`` directory:
 
 .. code-block:: bash
