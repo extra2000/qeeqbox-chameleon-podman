@@ -1,7 +1,16 @@
 Host Preparations
 =================
 
-Preparing hosts for deploying Qeeqbox Honeypots.
+Instructions how to prepare a fresh installed Almalinux 8 for deploying Qeeqbox Honeypots.
+
+Update packages
+---------------
+
+Make sure all packages are up to date:
+
+.. code-block:: bash
+
+    sudo dnf update
 
 Git Installations
 -----------------
