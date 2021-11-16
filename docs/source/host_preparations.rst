@@ -143,7 +143,7 @@ Execute the following command and make sure the output is ``cpu io memory pids``
 
 .. code-block:: bash
 
-    cat /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/cgroup.controllers
+    cat /sys/fs/cgroup/user.slice/user-$(id -u).slice/user@$(id -u).service/cgroup.controllers
 
 .. note::
 
