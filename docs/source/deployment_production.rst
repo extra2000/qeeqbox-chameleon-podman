@@ -15,7 +15,7 @@ Create a virtual machine named ``qeeqbox-chameleon-box`` with 2 NICs, for exampl
 
     Both NICs needed to be on different subnet. Otherwise, ``firewalld`` multiple zones doesn't work properly.
 
-In box's ``/etc/ssh/sshd_config``, change `#ListenAddress 0.0.0.0` to ``ListenAddress 192.168.122.2``.
+In box's ``/etc/ssh/sshd_config``, change ``#ListenAddress 0.0.0.0`` to ``ListenAddress 192.168.122.2``.
 
 Create a ``firewalld`` zone for Honeypots
 -----------------------------------------
