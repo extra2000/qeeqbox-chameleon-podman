@@ -9,7 +9,7 @@ Prerequisites
 Create a virtual machine named ``qeeqbox-chameleon-box`` with 2 NICs, for example:
 
     1. ``192.168.122.2``: For administration purpose such as SSH, tunnel Postgres, and bind Grafana.
-    2. ``192.168.123.2``: For Honeypots pod.
+    2. ``192.168.123.2``: For Honeypots pod. Assume that the NIC name for this IP address is ``enp7s0``.
 
 .. note::
 
@@ -28,7 +28,6 @@ Create a file ``/etc/firewalld/zones/honeypots.xml`` with the following lines:
     <zone>
       <short>honeypots</short>
       <description>Zone for honeypots deployment from qeeqbox/chameleon.</description>
-      <interface name="enp7s0"/>
       <port port="21" protocol="tcp"/>
       <port port="22" protocol="tcp"/>
       <port port="23" protocol="tcp"/>
@@ -49,17 +48,39 @@ Create a file ``/etc/firewalld/zones/honeypots.xml`` with the following lines:
       <port port="389" protocol="tcp"/>
     </zone>
 
-.. note::
-
-    Change NIC ``enp7s0`` according to your system.
-
 Execute the following command to reload ``firewalld`` and apply changes:
 
 .. code-block:: bash
 
     sudo firewall-cmd --reload
 
-Check and make sure the correct NIC is assigned to zone ``honeypots``:
+Make sure the zone in network configuration in ``/etc/sysconfig/network-scripts/ifcfg-enp7s0`` is set to ``honeypots`` for example:
+
+.. code-block:: text
+
+    TYPE=Ethernet
+    PROXY_METHOD=none
+    BROWSER_ONLY=no
+    BOOTPROTO=none
+    IPADDR=192.168.123.2
+    PREFIX=24
+    DEFROUTE=no
+    NAME=enp7s0
+    DEVICE=enp7s0
+    ONBOOT=yes
+    ZONE=honeypots
+
+.. note::
+
+    Change NIC ``enp7s0`` according to your system.
+
+Restart network to apply network configs for the NIC ``enp7s0``:
+
+.. code-block:: bash
+
+    sudo systemctl restart NetworkManager
+
+Check and make sure the NIC ``enp7s0`` is assigned to zone ``honeypots``:
 
 .. code-block:: bash
 
