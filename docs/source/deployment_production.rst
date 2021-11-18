@@ -351,3 +351,149 @@ Test Elasticsearch:
 .. code-block:: bash
 
     curl --user rdeniro:taxidriver -XPUT 'http://192.168.123.2:9200/idx'
+
+Filebeat deployment (optional)
+------------------------------
+
+Filebeat will be used to forward honeypots logs to Elastic Stack. You may skip this Section if you don't intend to push honeypots logs to Elastic Stack.
+
+Prerequisites
+~~~~~~~~~~~~~
+
+Deploy Elastic Stack from the following projects:
+
+    * `extra2000/elastic-elasticsearch-pod`_
+    * `extra2000/elastic-kibana-pod`_
+    * `extra2000/elastic-logstash-pod`_
+
+.. _extra2000/elastic-elasticsearch-pod: https://github.com/extra2000/elastic-elasticsearch-pod
+
+.. _extra2000/elastic-kibana-pod: https://github.com/extra2000/elastic-kibana-pod
+
+.. _extra2000/elastic-logstash-pod: https://github.com/extra2000/elastic-logstash-pod
+
+Put the following certificates according to the following lists:
+
+    * Put ``beats-certificate-bundle`` directory into ``./secrets/``
+    * Put ``elastic-ca.pem`` file into ``./secrets/``
+
+For SELinux platform, label the following files to allow to be mounted into container:
+
+.. code-block:: bash
+
+    chcon -R -v -t container_file_t ./secrets
+
+Create Podman Network (the ``qeeqboxbeatsnet``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create ``~/.config/cni/net.d/qeeqboxbeatsnet.conflist`` file:
+
+.. code-block:: yaml
+
+    {
+      "cniVersion": "0.4.0",
+      "name": "qeeqboxbeatsnet",
+      "plugins": [
+        {
+          "type": "bridge",
+          "bridge": "cni-podman2",
+          "isGateway": true,
+          "ipMasq": true,
+          "hairpinMode": true,
+          "ipam": {
+            "type": "host-local",
+            "routes": [{ "dst": "0.0.0.0/0" }],
+            "ranges": [
+              [
+                {
+                  "subnet": "192.168.126.0/24",
+                  "gateway": "192.168.126.1"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "type": "portmap",
+          "capabilities": {
+            "portMappings": true
+          }
+        },
+        {
+          "type": "firewall"
+        },
+        {
+          "type": "tuning"
+        },
+        {
+          "type": "dnsname",
+          "domainName": "qeeqboxbeatsnet"
+        }
+      ]
+    }
+
+.. note::
+
+    If ``~/.config/cni/net.d/`` does not exists, create the directory using ``sudo mkdir -pv ~/.config/cni/net.d/``.
+
+.. warning::
+
+    Rename ``cni-podman2`` to ``cni-podman3`` and etc if the name is already used by other Podman deployments. Also make sure to change IP address for ``subnet`` and ``gateway`` if they are already exists in your existing deployments.
+
+Deploy Filebeat
+~~~~~~~~~~~~~~~
+
+From the project root directory, ``cd`` into ``deployment/production/filebeat``:
+
+.. code-block:: bash
+
+    cd deployment/production/filebeat
+
+Create config files:
+
+.. code-block:: bash
+
+    cp -v configmaps/qeeqbox-chameleon-filebeat.yaml{.example,}
+    cp -v configs/filebeat.yml{.example,}
+    chmod go-w configs/filebeat.yml
+
+.. note::
+
+    Make sure to change the following configs in ``./configs/filebeat.yml``:
+
+        * ``output.logstash.hosts``
+        * ``monitoring.cluster_uuid``
+        * ``monitoring.elasticsearch.hosts``
+        * ``monitoring.elasticsearch.username``
+        * ``monitoring.elasticsearch.password``
+        * ``exclude_lines."'ip': '192.168.123.2'"``
+
+Create pod file:
+
+.. code-block:: bash
+
+    cp -v qeeqbox-chameleon-filebeat-pod.yaml{.example,}
+
+For SELinux platform, label the following files to allow to be mounted into container:
+
+.. code-block:: bash
+
+    chcon -R -v -t container_file_t ./configs
+
+Load SELinux security policy:
+
+.. code-block:: bash
+
+    sudo semodule -i selinux/qeeqbox_chameleon_filebeat.cil /usr/share/udica/templates/{base_container.cil,net_container.cil}
+
+Verify that the SELinux module exists:
+
+.. code-block:: bash
+
+    sudo semodule --list | grep -e "qeeqbox_chameleon_filebeat"
+
+Deploy Filebeat:
+
+.. code-block:: bash
+
+    podman play kube --network qeeqboxbeatsnet --configmap configmaps/qeeqbox-chameleon-filebeat.yaml --seccomp-profile-root ./seccomp qeeqbox-chameleon-filebeat-pod.yaml
