@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.1.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.0.0...v3.1.0) (2021-11-18)
+
+
+### Features
+
+* **deployment:** add Filebeat for development deployment ([d930d62](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/d930d62ee7affbc049887c596463878e4daa3f28))
+* **deployment:** add Filebeat for production deployment ([a931ff8](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/a931ff85ee237b31f5de9d14e6842816e86e74c8))
+
+
+### Styles
+
+* **deployment-production:** fix code syntax ([cdc94ab](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/cdc94ab9bad97eed9c2201fbf029444d379d440e))
+
+
+### Documentations
+
+* **deployment-development:** restrict `qeeqboxnet` with no Internet access ([35ed228](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/35ed228b43c32772116ecb492ec53546dd8df84f))
+* **deployment-production:** add instructions to deploy Filebeat ([d6534be](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/d6534be66a218ba16ebf87a9a2178e9daa4ed062))
+* **deployment-production:** improve firewall instruction ([940b8b8](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/940b8b8e9597d74a0392c4d78cf0a89e356a9399))
+* **host-preparations:** add solution to systemd cgroupv2 delegation bugs ([c889f57](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/c889f57f62e702812f30b887a2480a34d62d3036))
+* **host-preparations:** improve cgroupv2 instructions ([d097c01](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/d097c011362b1c2d712ae2d7601817efdb9bc7a9))
+* **host-preparations:** remove unnecessary `systemd-pam` package ([c4df5b9](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/c4df5b909276e7cb74e186c93eb2910bf678be19))
+* **host-preparations:** specify AlmaLinux 8 and make sure all packages are up to date ([9490b59](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/9490b59aec76a041df15959aa9a84a4103fb9e3a))
+* **qeeqbox-chameleon:** minor update repo ([3b66386](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/3b663862b8dbf94c4c4d20b014ed6cc180864443))
+
 ## [3.0.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v2.0.0...v3.0.0) (2021-11-08)
 
 
