@@ -1,0 +1,41 @@
+name: qeeqbox-chameleon-box
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: /usr/share/filebeat/logs
+  name: filebeat
+  keepfiles: 7
+  permissions: "0644"
+output.logstash:
+  hosts: [elk-box.lan:5044]
+  ssl.verification_mode: "full"
+  ssl.certificate_authorities: ["/usr/share/filebeat/elastic-ca.pem"]
+  ssl.certificate: "/usr/share/filebeat/beats-certificate-bundle/beats/beats.crt"
+  ssl.key: "/usr/share/filebeat/beats-certificate-bundle/beats/beats.key"
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /usr/share/filebeat/logs/*
+    encoding: plain
+    fields:
+      logname: filebeat
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/honeypots/*
+    encoding: plain
+    exclude_lines:
+      - 'honeypotslogger_QBSniffer_'
+      - 'honeypotslogger_main_'
+      - "'ip': '192.168.123.2'"
+    fields:
+      logname: qeeqbox-chameleon-honeypots
+monitoring:
+  enabled: true
+  cluster_uuid: "4zWrMvXLQ1KKtApnZ7JIjw"
+  elasticsearch:
+    hosts: ["https://elk-box.lan:9200"]
+    username: beats_system
+    password: abcde12345
+    ssl.certificate_authorities: ["/usr/share/filebeat/elastic-ca.pem"]
