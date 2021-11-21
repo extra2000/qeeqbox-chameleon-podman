@@ -119,11 +119,27 @@ To apply ``vm.max_map_count`` without reboot, execute the following command:
 Allow Rootless Podman to Limit Resources
 ----------------------------------------
 
+Find out current boot kernel:
+
+.. code-block:: bash
+
+    cat /proc/cmdline
+
+Assuming the current boot kernel is ``vmlinuz-4.18.0-348.el8.x86_64``, execute the following command to find out current boot options:
+
+.. code-block:: bash
+
+    sudo grubby --info /boot/vmlinuz-4.18.0-348.el8.x86_64
+
+.. note::
+
+    Make sure to remember the default ``args=`` because ``grubby --args=""`` command may replace existing ``args``.
+
 Enable Unified Cgroup:
 
 .. code-block:: bash
 
-    sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=1"
+    sudo grubby --update-kernel /boot/vmlinuz-4.18.0-348.el8.x86_64 --args="systemd.unified_cgroup_hierarchy=1"
     sudo grub2-mkconfig -o /etc/grub2.cfg
     sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
