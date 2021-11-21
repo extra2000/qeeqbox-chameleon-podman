@@ -172,7 +172,7 @@ Execute the following command and make sure the output is ``cpu io memory pids``
 
 .. note::
 
-    If the output is empty, try execute ``sudo systemctl daemon-reload`` and the re-execute the command above. If the output is empty again after reboot, then you are probably facing a systemd bugs. See https://bugs.almalinux.org/view.php?id=153#c399 for solution.
+    If the output is empty, try execute ``sudo systemctl daemon-reload`` and the re-execute the command above. If the output is still empty or empty again after reboot, then you are probably facing a systemd bugs. See https://bugs.almalinux.org/view.php?id=153#c399 for solution.
 
 To test rootless Podman, execute the following command:
 
