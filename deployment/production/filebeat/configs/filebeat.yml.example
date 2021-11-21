@@ -29,6 +29,7 @@ filebeat.inputs:
       - 'honeypotslogger_QBSniffer_'
       - 'honeypotslogger_main_'
       - "'ip': '192.168.123.2'"
+      - "'ip': '0.0.0.0'"
     fields:
       logname: qeeqbox-chameleon-honeypots
 monitoring:
