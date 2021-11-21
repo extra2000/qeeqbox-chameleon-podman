@@ -12,6 +12,12 @@ Make sure all packages are up to date:
 
     sudo dnf update
 
+Reboot:
+
+.. code-block:: bash
+
+    sudo reboot
+
 Git Installations
 -----------------
 
