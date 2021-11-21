@@ -86,6 +86,15 @@ Check and make sure the NIC ``enp7s0`` is assigned to zone ``honeypots``:
 
     sudo firewall-cmd --get-active-zones
 
+Clone repository
+----------------
+
+.. code-block:: bash
+
+    mkdir ~/extra2000
+    cd ~/extra2000
+    git clone --recursive https://github.com/extra2000/qeeqbox-chameleon-podman.git
+
 Build Qeeqbox Honeypots image
 -----------------------------
 

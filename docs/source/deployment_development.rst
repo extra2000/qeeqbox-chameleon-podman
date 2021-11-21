@@ -3,6 +3,15 @@ Development Deployment
 
 Example how to deploy Qeeqbox Chameleon for development environment.
 
+Clone repository
+----------------
+
+.. code-block:: bash
+
+    mkdir ~/extra2000
+    cd ~/extra2000
+    git clone --recursive https://github.com/extra2000/qeeqbox-chameleon-podman.git
+
 Build Qeeqbox Honeypots image
 -----------------------------
 
