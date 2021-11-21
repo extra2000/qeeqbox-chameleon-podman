@@ -366,6 +366,12 @@ Filebeat deployment (optional)
 
 Filebeat will be used to forward honeypots logs to Elastic Stack. You may skip this Section if you don't intend to push honeypots logs to Elastic Stack.
 
+From the project root directory, ``cd`` into ``deployment/production/filebeat``:
+
+.. code-block:: bash
+
+    cd deployment/production/filebeat
+
 Prerequisites
 ~~~~~~~~~~~~~
 
