@@ -1,5 +1,21 @@
 # Changelog
 
+### [3.1.1](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.0...v3.1.1) (2021-11-21)
+
+
+### Documentations
+
+* **deployments:** add instruction to cd into filebeat ([8ebbf0d](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/8ebbf0d5e14314f57af03f6cbafbd87dce20ddbe))
+* **deployments:** add instruction to clone repository ([4b21c86](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/4b21c8626b44ddaedf88231fba1f5e29b13ba7db))
+* **host-preparations:** improve `grubby` commands to prevent updating all kernels ([a4b13c7](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/a4b13c79c840626bb5e83b3349eee9c1ccced57c))
+* **host-preparations:** improve solution for cgroup controller ([6161092](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/6161092a4385dd28de5276f5164d17ce1ac28743))
+* **host-preparations:** reboot after `dnf update` ([3764de0](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/3764de006adb9ca0b6e3fb4f827092266bd434a4))
+
+
+### Fixes
+
+* **filebeat:** exclude `- "'ip': '0.0.0.0'"` into production filebeat config ([7831e3e](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/7831e3e7607f0f88c41ebe1a1c0d81225ab9c35e))
+
 ## [3.1.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.0.0...v3.1.0) (2021-11-18)
 
 
