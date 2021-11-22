@@ -61,6 +61,12 @@ Copy the binary files into Podman plugins directory and fix permissions:
     sudo chcon -v -u system_u /usr/libexec/cni/dnsname
     sudo chmod og+rx /usr/libexec/cni/dnsname
 
+Add ``/usr/libexec/cni/dnsname`` into whitelisted application:
+
+.. code-block:: bash
+
+    sudo fapolicyd-cli --file add /usr/libexec/cni/dnsname
+
 SELinux Utilities
 -----------------
 
