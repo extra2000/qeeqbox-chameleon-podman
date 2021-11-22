@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.1.2](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.1...v3.1.2) (2021-11-22)
+
+
+### Documentations
+
+* **host-preparations:** add `dnsname` into whitelisted application ([dea9776](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/dea97760fc07cdba31b4c674561f0f99c6e342e4))
+
 ### [3.1.1](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.0...v3.1.1) (2021-11-21)
 
 
