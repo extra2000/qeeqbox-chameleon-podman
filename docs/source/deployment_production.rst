@@ -158,6 +158,15 @@ Test postgres. Make sure the following command success:
 
     podman run -it --rm --network=host -e PGPASSWORD=abcde12345 docker.io/library/postgres:9.6 psql --username postgres --host 127.0.0.1 --port 9999 -c "\l"
 
+Create systemd files to run at startup:
+
+.. code-block:: bash
+
+    mkdir -pv ~/.config/systemd/user
+    cd ~/.config/systemd/user
+    podman generate systemd --files --name qeeqbox-chameleon-postgres-pod
+    systemctl --user enable pod-qeeqbox-chameleon-postgres-pod.service container-qeeqbox-chameleon-postgres-pod-srv01.service
+
 Create user and database for Honeypots and Grafana
 --------------------------------------------------
 
@@ -229,6 +238,15 @@ Test redis. Make sure the following command returns ``PONG``:
 
     podman run -it --network=host --rm docker.io/redis:6.2-alpine redis-cli -h 127.0.0.1 -p 6379 ping
 
+Create systemd files to run at startup:
+
+.. code-block:: bash
+
+    mkdir -pv ~/.config/systemd/user
+    cd ~/.config/systemd/user
+    podman generate systemd --files --name qeeqbox-chameleon-redis-pod
+    systemctl --user enable pod-qeeqbox-chameleon-redis-pod.service container-qeeqbox-chameleon-redis-pod-srv01.service
+
 Deploy Grafana
 --------------
 
@@ -278,6 +296,15 @@ Deploy grafana:
     podman play kube --configmap configmaps/qeeqbox-chameleon-grafana.yaml --seccomp-profile-root ./seccomp qeeqbox-chameleon-grafana-pod.yaml
 
 Test Grafana deployment. Open your web-browser and go to http://localhost:3000.
+
+Create systemd files to run at startup:
+
+.. code-block:: bash
+
+    mkdir -pv ~/.config/systemd/user
+    cd ~/.config/systemd/user
+    podman generate systemd --files --name qeeqbox-chameleon-grafana-pod
+    systemctl --user enable pod-qeeqbox-chameleon-grafana-pod.service container-qeeqbox-chameleon-grafana-pod-srv01.service
 
 Deploy Honeypots
 ----------------
@@ -338,6 +365,15 @@ To view Honeypots logs, execute the following command:
 .. note::
 
     Network sniff functionality doesn't work because rootless Podman doesn't have privileged on host network.
+
+Create systemd files to run at startup:
+
+.. code-block:: bash
+
+    mkdir -pv ~/.config/systemd/user
+    cd ~/.config/systemd/user
+    podman generate systemd --files --name qeeqbox-chameleon-honeypots-pod
+    systemctl --user enable pod-qeeqbox-chameleon-honeypots-pod.service container-qeeqbox-chameleon-honeypots-pod-srv01.service
 
 Testing
 -------
@@ -512,3 +548,12 @@ Deploy Filebeat:
 .. code-block:: bash
 
     podman play kube --network qeeqboxbeatsnet --configmap configmaps/qeeqbox-chameleon-filebeat.yaml --seccomp-profile-root ./seccomp qeeqbox-chameleon-filebeat-pod.yaml
+
+Create systemd files to run at startup:
+
+.. code-block:: bash
+
+    mkdir -pv ~/.config/systemd/user
+    cd ~/.config/systemd/user
+    podman generate systemd --files --name qeeqbox-chameleon-filebeat-pod
+    systemctl --user enable pod-qeeqbox-chameleon-filebeat-pod.service container-qeeqbox-chameleon-filebeat-pod-srv01.service
