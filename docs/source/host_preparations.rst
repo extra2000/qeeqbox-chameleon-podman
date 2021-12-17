@@ -200,3 +200,26 @@ To apply changes without reboot, execute the following command:
 .. code-block:: bash
 
     sudo sysctl -w net.ipv4.ip_unprivileged_port_start=21
+
+Enable Linger for Current User
+------------------------------
+
+Rootless Podman pods and containers can be automatically run at startup via user's systemd unit. However, it is not possible without linger. Linger will allow user's systemd unit to start onboot without having user to login. Also allow user's systemd unit to continue running after SSH logout. Thus, linger will allow rootless Podman containers and pods to start onboot and then continue running after user SSH logout.
+
+To get current user's linger status:
+
+.. code-block:: bash
+
+    loginctl show-user ${USER}
+
+To enable linger for the current user:
+
+.. code-block:: bash
+
+    sudo loginctl enable-linger ${USER}
+
+To list all linger users:
+
+.. code-block:: bash
+
+    ls /var/lib/systemd/linger/
