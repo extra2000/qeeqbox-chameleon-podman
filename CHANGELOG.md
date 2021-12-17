@@ -1,5 +1,18 @@
 # Changelog
 
+### [3.1.3](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.2...v3.1.3) (2021-12-17)
+
+
+### Fixes
+
+* **src/qeeqbox-chameleon:** update commit ([2304970](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/230497038d57129cc20f13ddda3ccacf501187d0))
+
+
+### Documentations
+
+* **deployments:** add `systemd` instructions for auto startup ([f527353](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/f5273537a20086c0e55165cd028caab8a4537fae))
+* **host-preparations:** add instructions to enable linger user ([0ff1b44](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/0ff1b44d53f1e0c0fa4a7667d3066f33705e9196))
+
 ### [3.1.2](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.1...v3.1.2) (2021-11-22)
 
 
