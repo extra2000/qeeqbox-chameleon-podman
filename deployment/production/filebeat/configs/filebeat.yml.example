@@ -31,7 +31,7 @@ filebeat.inputs:
       - "'ip': '192.168.123.2'"
       - "'ip': '0.0.0.0'"
     fields:
-      logname: qeeqbox-chameleon-honeypots
+      logname: qeeqbox-honeypots
 monitoring:
   enabled: true
   cluster_uuid: "4zWrMvXLQ1KKtApnZ7JIjw"
