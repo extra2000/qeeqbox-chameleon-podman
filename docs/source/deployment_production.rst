@@ -557,3 +557,64 @@ Create systemd files to run at startup:
     cd ~/.config/systemd/user
     podman generate systemd --files --name qeeqbox-chameleon-filebeat-pod
     systemctl --user enable pod-qeeqbox-chameleon-filebeat-pod.service container-qeeqbox-chameleon-filebeat-pod-srv01.service
+
+Configure Logstash
+~~~~~~~~~~~~~~~~~~
+
+On your Logstash instance, ``cd`` into ``elastic-logstash-pod`` project root directory for example:
+
+.. code-block:: bash
+
+    cd ~/extra2000/elastic-logstash-pod
+
+From the project root directory, ``cd`` into ``deployment/examples/podman-general/pipelines/``:
+
+.. code-block:: bash
+
+    cd deployment/examples/podman-general/pipelines/
+
+Clone this repository:
+
+.. code-block:: bash
+
+    git clone --recursive https://github.com/extra2000/qeeqbox-chameleon-podman.git
+
+Create ILM policy for Qeeqbox Honeypots. Follow instruction in ``qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/ilm-policies/qeeqbox_honeypots.md``.
+
+Create Data Stream templates for Qeeqbox Honeypots. Follow all instructions in ``qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/templates/*.md``.
+
+Create pipeline files:
+
+.. code-block:: bash
+
+    cp -v qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/beats.conf{.example,}
+    cp -v qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/qeeqbox_honeypots-ssh.conf{.example,}
+    cp -v qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/qeeqbox_honeypots-mysql.conf{.example,}
+    cp -v qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/qeeqbox_honeypots-http.conf{.example,}
+
+.. note:
+
+    You may need to edit the Logstash pipeline files such as Elasticsearch Host value.
+
+Make sure all contents in the `qeeqbox-chameleon-podman` repository are readable by others:
+
+.. code-block:: bash
+
+    find qeeqbox-chameleon-podman -type d -exec chmod o+rx {} +
+    find qeeqbox-chameleon-podman -type f -exec chmod o+r {} +
+
+In ``~/extra2000/elastic-logstash-pod/deployment/examples/podman-general/configs/logstash-01-pipelines.yml``, add the following lines:
+
+.. code-block:: yaml
+
+    - pipeline.id: beats
+      path.config: "/usr/share/logstash/pipeline/qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/beats.conf"
+
+    - pipeline.id: qeeqbox-honeypots-mysql
+      path.config: "/usr/share/logstash/pipeline/qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/qeeqbox_honeypots-mysql.conf"
+
+    - pipeline.id: qeeqbox-honeypots-ssh
+      path.config: "/usr/share/logstash/pipeline/qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/qeeqbox_honeypots-ssh.conf"
+
+    - pipeline.id: qeeqbox-honeypots-http
+      path.config: "/usr/share/logstash/pipeline/qeeqbox-chameleon-podman/deployment/production/filebeat/logstash/pipelines/qeeqbox_honeypots-http.conf"
