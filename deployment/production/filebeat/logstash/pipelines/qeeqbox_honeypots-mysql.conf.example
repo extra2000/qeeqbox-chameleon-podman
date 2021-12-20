@@ -1,0 +1,95 @@
+input {
+  pipeline { address => qeeqbox_honeypots_mysql }
+}
+
+filter {
+  grok {
+    ecs_compatibility => "v1"
+    break_on_match => true
+    match => {
+      "message" => [
+        "\[%{GREEDYDATA:datetime}\] \[honeypotslogger_%{GREEDYDATA:module_name}_%{GREEDYDATA}\] \[%{WORD:loglevel}\] - \[\'servers', \{'ip': '%{IP:client_ip}', 'port': %{NUMBER:client_port}\}\]",
+        "\[%{GREEDYDATA:datetime}\] \[honeypotslogger_%{GREEDYDATA:module_name}_%{GREEDYDATA}\] \[%{WORD:loglevel}\] - \[\'servers', \{'status': '%{WORD:login_status}', 'ip': '%{IP:client_ip}', 'port': %{NUMBER:client_port}, 'username': '%{GREEDYDATA:login_username}', 'password': '%{GREEDYDATA:login_password}'\}\]"
+      ]
+    }
+  }
+
+  if ([module_name] != "QMysqlServer") {
+    drop { }
+  }
+
+  date {
+    match => [ "[datetime]", "YYYY-MM-dd HH:mm:ss,SSS", "ISO8601" ]
+    timezone => "%{[fields][timezone]}"
+    target => "[honeypot][timestamp]"
+  }
+
+  mutate {
+    rename => {
+      "module_name" => "[honeypot][module][name]"
+      "client_ip" => "[honeypot][client][ip]"
+      "client_port" => "[honeypot][client][port]"
+      "[fields][organization_name]" => "[honeypot][property][organization][name]"
+      "[fields][project_name]" => "[honeypot][property][project][name]"
+      "[fields][sensor_name]" => "[honeypot][property][sensor][name]"
+      "[fields][sensor_ip]" => "[honeypot][property][sensor][ip]"
+    }
+  }
+
+  if [login_status] {
+    mutate {
+      rename => {
+        "login_status" => "[honeypot][login][status]"
+      }
+    }
+  }
+
+  if [login_username] {
+    mutate {
+      rename => {
+        "login_username" => "[honeypot][login][username]"
+      }
+    }
+  }
+
+  if [login_password] {
+    mutate {
+      rename => {
+        "login_password" => "[honeypot][login][password]"
+      }
+    }
+  }
+
+  prune {
+    whitelist_names => [ "^@timestamp$", "^honeypot$", "^tags$" ]
+  }
+}
+
+output {
+  # stdout { codec => rubydebug }
+  if [honeypot][login] {
+    elasticsearch {
+      ecs_compatibility => "v1"
+      hosts => ["https://es-coord-01.elknet:9200"]
+      cacert => ["/usr/share/logstash/config/elastic-ca.pem"]
+      ssl_certificate_verification => true
+      api_key => "${ES_API_KEY}"
+      ssl => true
+      data_stream => false
+      action => "create"
+      index => "qeeqbox_honeypots-mysql_login-%{[honeypot][property][organization][name]}-%{[honeypot][property][project][name]}-%{[honeypot][property][sensor][name]}"
+    }
+  } else {
+    elasticsearch {
+      ecs_compatibility => "v1"
+      hosts => ["https://es-coord-01.elknet:9200"]
+      cacert => ["/usr/share/logstash/config/elastic-ca.pem"]
+      ssl_certificate_verification => true
+      api_key => "${ES_API_KEY}"
+      ssl => true
+      data_stream => false
+      action => "create"
+      index => "qeeqbox_honeypots-mysql_conn-%{[honeypot][property][organization][name]}-%{[honeypot][property][project][name]}-%{[honeypot][property][sensor][name]}"
+    }
+  }
+}

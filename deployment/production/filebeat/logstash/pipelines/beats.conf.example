@@ -1,0 +1,30 @@
+input {
+  beats {
+    ecs_compatibility => "v1"
+    port => 5044
+    ssl => true
+    ssl_certificate_authorities => ["/usr/share/logstash/config/elastic-ca.pem"]
+    ssl_certificate => "/usr/share/logstash/config/logstash-server.crt"
+    ssl_key => "/usr/share/logstash/config/logstash-server.key"
+    ssl_verify_mode => "force_peer"
+    include_codec_tag => false
+  }
+}
+
+output {
+  if [@metadata][beat] == "filebeat" and [fields][logname] == "qeeqbox-honeypots" {
+    pipeline { send_to => qeeqbox_honeypots_mysql }
+    pipeline { send_to => qeeqbox_honeypots_ssh }
+    pipeline { send_to => qeeqbox_honeypots_http }
+  } else {
+    elasticsearch {
+      ecs_compatibility => "v1"
+      hosts => ["https://es-coord-01.elknet:9200"]
+      cacert => ["/usr/share/logstash/config/elastic-ca.pem"]
+      ssl_certificate_verification => true
+      api_key => "${ES_API_KEY}"
+      ssl => true
+      data_stream => false
+    }
+  }
+}

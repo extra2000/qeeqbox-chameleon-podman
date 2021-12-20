@@ -8,3 +8,6 @@ secrets/*
 !secrets/.gitkeep
 
 qeeqbox-chameleon-filebeat-pod.yaml
+
+logstash/pipelines/*
+!logstash/pipelines/*.example
