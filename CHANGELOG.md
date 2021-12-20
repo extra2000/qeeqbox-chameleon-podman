@@ -1,5 +1,33 @@
 # Changelog
 
+## [4.0.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.3...v4.0.0) (2021-12-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **filebeat:** `logname: qeeqbox-chameleon-honeypots` has been renamed to `logname: qeeqbox-honeypots`
+
+### Features
+
+* **filebeat:** add `timezone`, `organization_name`, `project_name`, `sensor_name`, and `sensor_ip` option into YML config file ([6f9f4b4](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/6f9f4b4a898dc566ecafb99092c3d5bf008f96ee))
+* **filebeat:** add Logstash pipelines, templates, and ILM policies ([c80f609](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/c80f60996b3b50cdbda2b5eb48059106afedbaad))
+
+
+### Maintenance
+
+* **src/qeeqbox-chameleon:** update to merged PR commit ([29df6b3](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/29df6b385a73735ffff78a54d62a12e015de0244))
+
+
+### Code Refactoring
+
+* **filebeat:** rename `logname: qeeqbox-chameleon-honeypots` to `logname: qeeqbox-honeypots` ([50da3c2](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/50da3c29f742fdc4dbb08102e39f8ab5542e6ce8))
+* **sphinx:** change to full width page ([a4dccc3](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/a4dccc3fe6671ed79a04786770b3794b8df4a937))
+
+
+### Documentations
+
+* **deployment-production:** add instructions to configure Logstash ([49a3457](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/49a3457aa3761acbbdbaf1bc5f9ef33a87927c50))
+
 ### [3.1.3](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.2...v3.1.3) (2021-12-17)
 
 
