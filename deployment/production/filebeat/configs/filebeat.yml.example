@@ -32,6 +32,12 @@ filebeat.inputs:
       - "'ip': '0.0.0.0'"
     fields:
       logname: qeeqbox-honeypots
+      ## NOTE: organization_name, project_name, and sensor_name will be written as index name. Do not use "-". Instead, use "_".
+      timezone: "UTC"
+      organization_name: "extra2000"
+      project_name: "collector_study"
+      sensor_name: "home_sensor"
+      sensor_ip: 192.168.123.2
 monitoring:
   enabled: true
   cluster_uuid: "4zWrMvXLQ1KKtApnZ7JIjw"
