@@ -5,12 +5,8 @@ input {
 filter {
   grok {
     ecs_compatibility => "v1"
-    break_on_match => true
     match => {
-      "message" => [
-        "\[%{GREEDYDATA:datetime}\] \[honeypotslogger_%{GREEDYDATA:module_name}_%{GREEDYDATA}\] \[%{WORD:loglevel}\] - \[\'servers', \{'ip': '%{IP:client_ip}'\}\]",
-        "\[%{GREEDYDATA:datetime}\] \[honeypotslogger_%{GREEDYDATA:module_name}_%{GREEDYDATA}\] \[%{WORD:loglevel}\] - \[\'servers', \{'ip': '%{IP:client_ip}', 'request': \{%{GREEDYDATA:request_json}\}\}\]"
-      ]
+      "message" => "\[%{GREEDYDATA:datetime}\] \[honeypotslogger_%{GREEDYDATA:module_name}_%{GREEDYDATA}\] \[%{WORD:loglevel}\] - \[\'servers', \{'ip': '%{IP:client_ip}', 'request': \{%{GREEDYDATA:request_json}\}\}\]"
     }
   }
 
