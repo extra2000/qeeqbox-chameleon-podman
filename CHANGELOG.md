@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.0.1](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v4.0.0...v4.0.1) (2021-12-22)
+
+
+### Fixes
+
+* **logstash-pipeline:** ignore HTTP/HTTPS events with empty request ([fa8c2f8](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/fa8c2f89295c4a494159eb0940865df794340e72))
+
 ## [4.0.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v3.1.3...v4.0.0) (2021-12-20)
 
 
