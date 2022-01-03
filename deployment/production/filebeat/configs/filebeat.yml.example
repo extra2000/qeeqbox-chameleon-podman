@@ -42,11 +42,8 @@ queue.mem:
   events: 32
   flush.min_events: 16
   flush.timeout: 30s
-monitoring:
-  enabled: true
-  cluster_uuid: "4zWrMvXLQ1KKtApnZ7JIjw"
-  elasticsearch:
-    hosts: ["https://elk-box.lan:9200"]
-    username: beats_system
-    password: abcde12345
-    ssl.certificate_authorities: ["/usr/share/filebeat/elastic-ca.pem"]
+monitoring.enabled: false
+monitoring.cluster_uuid: "4zWrMvXLQ1KKtApnZ7JIjw"
+http.enabled: true
+http.host: localhost
+http.port: 5066
