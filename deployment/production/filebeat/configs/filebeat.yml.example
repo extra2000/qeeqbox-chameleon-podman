@@ -38,6 +38,10 @@ filebeat.inputs:
       project_name: "collector_study"
       sensor_name: "home_sensor"
       sensor_ip: 192.168.123.2
+queue.mem:
+  events: 32
+  flush.min_events: 16
+  flush.timeout: 30s
 monitoring:
   enabled: true
   cluster_uuid: "4zWrMvXLQ1KKtApnZ7JIjw"
