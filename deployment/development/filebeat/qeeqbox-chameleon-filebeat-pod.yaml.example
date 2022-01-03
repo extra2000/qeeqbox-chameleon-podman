@@ -25,10 +25,10 @@ spec:
         type: qeeqbox_chameleon_filebeat.process
     resources:
       requests:
-        memory: 200Mi
+        memory: 100Mi
         cpu: 1000m
       limits:
-        memory: 200Mi
+        memory: 100Mi
         cpu: 1000m
     volumeMounts:
     - mountPath: /usr/share/filebeat/filebeat.yml
