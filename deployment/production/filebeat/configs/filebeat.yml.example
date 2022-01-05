@@ -1,4 +1,4 @@
-name: qeeqbox-chameleon-box
+name: qeeqbox_chameleon_box
 logging.level: warning
 logging.to_files: true
 logging.files:
