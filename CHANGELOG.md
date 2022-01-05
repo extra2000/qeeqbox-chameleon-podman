@@ -1,5 +1,30 @@
 # Changelog
 
+## [4.1.0](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v4.0.1...v4.1.0) (2022-01-05)
+
+
+### Features
+
+* **filebeat:** upgrade from version `7.15.2` to `7.16.2` ([16e93df](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/16e93df9a5748da42dd23de5d5051ea3cecc3e11))
+
+
+### Performance Improvements
+
+* **filebeat:** reduce event queue on memory ([2df44cc](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/2df44cc592c00fb2b79d2a9b2c21f5ddb19d49e9))
+* **filebeat:** reduce memory limit from 200MiB to 100MiB ([533079b](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/533079b4a3e4addbbf05c23f0a9f1f3f18302995))
+
+
+### Fixes
+
+* **filebeat:** add `organization_name` and `project_name` fields in `processors` ([03d6471](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/03d6471afae687525576ab3c5b94c928c4e835bf))
+* **filebeat:** update SELinux required for Metricbeat monitoring ([6f6e591](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/6f6e591ecc5f2ee429d553d7df12eb174a644494))
+
+
+### Code Refactoring
+
+* **filebeat:** change naming style from hyphens to underscores ([e6145d5](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/e6145d5c07562f3e01669f7fcfb8731417b8c612))
+* **filebeat:** change self-monitoring to Metricbeat monitoring for Stack Monitoring ([2ebe6b1](https://github.com/extra2000/qeeqbox-chameleon-podman/commit/2ebe6b1d829e174380d5095ba85aedee95272316))
+
 ### [4.0.1](https://github.com/extra2000/qeeqbox-chameleon-podman/compare/v4.0.0...v4.0.1) (2021-12-22)
 
 
