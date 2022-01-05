@@ -12,6 +12,13 @@ output.logstash:
   ssl.certificate_authorities: ["/usr/share/filebeat/elastic-ca.pem"]
   ssl.certificate: "/usr/share/filebeat/beats-certificate-bundle/beats/beats.crt"
   ssl.key: "/usr/share/filebeat/beats-certificate-bundle/beats/beats.key"
+processors:
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_fields:
+      fields:
+        organization_name: "extra2000"
+        project_name: "collector_study"
 filebeat.inputs:
   - type: log
     enabled: true
